@@ -1,0 +1,49 @@
+﻿@model List<lab2WEB.Models.Entities.Студенты>
+@{
+    ViewBag.Title = "ListOfStudents";
+}
+
+<h2>Список студентов</h2>
+<table style="width:90%">
+    <thead>
+        <tr>
+            <th class="text-center">ФИО</th>
+            <th class="text-center">Дата рождения</th>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <th class="text-center">#</th>
+                if (User.IsInRole("Admin"))
+                {
+                    <th class="text-center">#</th>
+                    <th class="text-center">#</th>
+                }
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var student in Model)
+        {
+            { Html.RenderPartial("StudentsOverviewPartial", student); }
+            @*<tr class="text-center">
+                    <td>@student.Фамилия @student.Имя @student.Отчество</td>
+                    <td>@student.Дата_рождения.ToString("d")</td>
+                    <td>@Html.ActionLink("Подробнее","StudentDetails","Lab2"
+                        , new {studentID = student.ID_студента}, null)</td>
+                    <td>@Html.ActionLink("Изменить","EditStudent","Lab2"
+                        , new {studentID = student.ID_студента}, null)</td>
+                    <td>@Html.ActionLink("Удалить","DeleteStudent","Lab2"
+                        , new {studentID = student.ID_студента}, null)</td>
+                </tr>*@
+        }
+    </tbody>
+    @if (User.Identity.IsAuthenticated)
+    {
+        if (User.IsInRole("Admin"))
+        {
+        <tbody>
+            @Html.ActionLink("Добавить студента", "CreateStudent", "Lab2", new { @class = "btn btn-defualt" })
+        </tbody>
+        }
+    }
+    </table>
+

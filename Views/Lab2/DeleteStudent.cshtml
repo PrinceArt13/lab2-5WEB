@@ -1,0 +1,52 @@
+﻿@model lab2WEB.Models.Entities.Студенты
+
+@{
+    Layout = null;
+}
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>Студенты</h4>
+        <hr />
+        <div class="row">
+            <div class="col-md-3" style="font-weight: bold">@Html.LabelFor(model => model.Фамилия)</div>
+            <div class="col-md-3">@Html.DisplayFor(model => model.Фамилия)</div>
+
+            <div class="col-md-3" style="font-weight: bold">@Html.LabelFor(model => model.Имя)</div>
+            <div class="col-md-3">@Html.DisplayFor(model => model.Имя)</div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3" style="font-weight: bold">@Html.LabelFor(model => model.Отчество)</div>
+            <div class="col-md-3">@Html.DisplayFor(model => model.Отчество)</div>
+
+            <div class="col-md-3" style="font-weight: bold">@Html.LabelFor(model => model.Отчество)</div>
+            <div class="col-md-3">@Html.DisplayFor(model => model.Отчество)</div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-3" style="font-weight: bold">@Html.LabelFor(model => model.Адрес_проживания)</div>
+            <div class="col-md-3">@Html.DisplayFor(model => model.Адрес_проживания)</div>
+
+            <div class="col-md-3" style="font-weight: bold">@Html.LabelFor(model => model.Дата_рождения)</div>
+            <div class="col-md-3">@Html.DisplayFor(model => model.Дата_рождения)</div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3" style="font-weight: bold">@Html.LabelFor(model => model.Пол)</div>
+            <div class="col-md-3">@ViewBag.Пол</div>
+
+            @*<div class="col-md-3">@Html.LabelFor(model => model.Уровень_владения_ИЯ)</div>
+            <div class="col-md-3">@Html.DisplayFor(model => model.Уровень_владения_ИЯ)</div>*@
+        </div>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "ListOfStudents")
+            </div>
+        }
+    </div>

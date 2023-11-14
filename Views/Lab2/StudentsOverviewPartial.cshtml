@@ -1,0 +1,36 @@
+﻿@model lab2WEB.Models.Entities.Студенты
+@*<div class="row">
+    <div class="row-md-5">
+        @Model.Фамилия @Model.Имя @Model.Отчество
+        (@{Html.RenderAction("YearsOld"
+                  , new { studentID = Model.ID_студента });})
+    </div>*@
+
+    <tr class="text-center">
+        <td>
+            @Model.Фамилия @Model.Имя @Model.Отчество
+            (@{Html.RenderAction("YearsOld"
+               , new { studentID = Model.ID_студента });})
+        </td>
+            <td>@Model.Дата_рождения.ToString("d")</td>
+        
+        @if (User.Identity.IsAuthenticated)
+        {
+            <td>@Html.ActionLink("Подробнее", "StudentDetails", "Lab2"
+                  , new { studentID = Model.ID_студента }, null)</td>
+            if (User.IsInRole("Admin"))
+            {
+            <td>@Html.ActionLink("Изменить", "EditStudent", "Lab2"
+                      , new { studentID = Model.ID_студента }, null)</td>
+            <td>@Html.ActionLink("Удалить", "DeleteStudent", "Lab2"
+                      , new { studentID = Model.ID_студента }, null)</td>
+            }
+        }
+    </tr>
+    @*<div class="col-md-1">@Model.Дата_рождения.ToString("d")</div>
+        <div class="col-md-2">@Html.ActionLink("Подробнее", "ModelDetails", "Lab2"
+                             , new {ModelID = Model.ID_студента }, null)</div>
+        <div class="col-md-2">@Html.ActionLink("Редактировать", "EditModel"
+                             , new { controller = "Lab2", ModelID = Model.ID_студента})</div>
+        <div class="col-md-2">@Html.ActionLink("Удалить","DeleteModel"
+                             , new {controller = "Lab2",ModelID = Model.ID_студента })</div>*@
